@@ -15,6 +15,9 @@ Route::get('/', 'StaticPagesController@home')->name('home');
 Route::get('/help', 'StaticPagesController@help')->name('help');
 Route::get('/about', 'StaticPagesController@about')->name('about');
 
+// “signup” 和 “/signup” 从使用上看无差别
+Route::get('signup', 'UsersController@create')->name('signup');
+
 // Route::prefix('todolist')->namespace('Todolist')->group(function () {
 //     Route::prefix('index')->group(function () {
 //         Route::get('index', 'IndexController@index');

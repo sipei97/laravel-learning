@@ -17,6 +17,7 @@ Route::get('/about', 'StaticPagesController@about')->name('about');
 
 // “signup” 和 “/signup” 从使用上看无差别
 Route::get('signup', 'UsersController@create')->name('signup');
+Route::resource('users', 'UsersController');
 
 // Route::prefix('todolist')->namespace('Todolist')->group(function () {
 //     Route::prefix('index')->group(function () {

@@ -23,6 +23,8 @@ Route::get('login', 'SessionsController@create')->name('login');
 Route::post('login', 'SessionsController@store')->name('login');
 Route::delete('logout', 'SessionsController@destroy')->name('logout');
 
+Route::get('signup/confirm/{token}', 'UsersController@confirmEmail')->name('confirm_email');
+
 // Route::prefix('todolist')->namespace('Todolist')->group(function () {
 //     Route::prefix('index')->group(function () {
 //         Route::get('index', 'IndexController@index');

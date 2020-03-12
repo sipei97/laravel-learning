@@ -1,47 +1,38 @@
 @extends('layouts.app')
+@section('title', '重置密码')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+  <div class="col-md-8 offset-md-2">
+    <div class="card">
+      <div class="card-header"><h5>重置密码</h5></div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+      <div class="card-body">
+        @if (session('status'))
+          <div class="alert alert-success">
+            {{ session('status') }}
+          </div>
+        @endif
 
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
+        <form method="POST" action="{{ route('password.email') }}">
+          {{ csrf_field() }}
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+          <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+            <label for="email" class="form-control-label">邮箱地址：</label>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+            <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}">
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+            @if ($errors->has('email'))
+              <span class="form-text">
+                <strong>{{ $errors->first('email') }}</strong>
+              </span>
+            @endif
+          </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">发送密码重置邮件</button>
+          </div>
+        </form>
+      </div>
     </div>
-</div>
+  </div>
 @endsection

@@ -28,18 +28,18 @@ class SessionsController extends Controller
 
         if (Auth::attempt($credentials, $request->has('remember'))) {
             if (Auth::user()->activated) {
-                session()->flash('success', '»¶Ó­»ØÀ´£¡');
+                session()->flash('success', 'æ¬¢è¿å›æ¥ï¼');
                 $fallback = route('users.show', Auth::user());
 
                 return redirect()->intended($fallback);
             } else {
                 Auth::logout();
-                session()->flash('warning', 'ÄãµÄÕËºÅÎ´¼¤»î £¬Çë¼ì²éÓÊÏäÖĞµÄ×¢²áÓÊ¼ş½øĞĞ¼¤»î¡£');
+                session()->flash('warning', 'ä½ çš„è´¦å·æœªæ¿€æ´» ï¼Œè¯·æ£€æŸ¥é‚®ç®±ä¸­çš„æ³¨å†Œé‚®ä»¶è¿›è¡Œæ¿€æ´»ã€‚');
 
                 return redirect('/');
             }
         } else {
-            session()->flash('danger', 'ºÜ±§Ç¸£¬ÄúµÄÓÊÏäºÍÃÜÂë²»Æ¥Åä');
+            session()->flash('danger', 'å¾ˆæŠ±æ­‰ï¼Œæ‚¨çš„é‚®ç®±å’Œå¯†ç ä¸åŒ¹é…');
 
             return redirect()->back()->withInput();
         }
@@ -48,7 +48,7 @@ class SessionsController extends Controller
     public function destroy()
     {
         Auth::logout();
-        session()->flash('success', 'ÄúÒÑ³É¹¦ÍË³ö£¡');
+        session()->flash('success', 'æ‚¨å·²æˆåŠŸé€€å‡ºï¼');
         return redirect('login');
     }
 }
